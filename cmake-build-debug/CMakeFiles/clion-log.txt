@@ -1,0 +1,5 @@
+"D:\clion_stm32\JetBrains\CLion 2020.3.4\bin\cmake\win\bin\cmake.exe" -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - MinGW Makefiles" D:\clion_stm32\project_file\lv_imp
+-- Minimal optimization, debug info included
+-- Configuring done
+-- Generating done
+-- Build files have been written to: D:/clion_stm32/project_file/lv_imp/cmake-build-debug
