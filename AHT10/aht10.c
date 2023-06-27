@@ -3,36 +3,55 @@
 #include "myiic.h"
 
 /*********************************************************************************
+			  ___   _     _____  _____  _   _  _____  _____  _   __
+			 / _ \ | |   |_   _||  ___|| \ | ||_   _||  ___|| | / /
+			/ /_\ \| |     | |  | |__  |  \| |  | |  | |__  | |/ /
+			|  _  || |     | |  |  __| | . ` |  | |  |  __| |    \
+			| | | || |_____| |_ | |___ | |\  |  | |  | |___ | |\  \
+			\_| |_/\_____/\___/ \____/ \_| \_/  \_/  \____/ \_| \_/
 
+ *	******************************************************************************
+ *	ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö»ï¿½ï¿½Ñ§Ï°Ê¹ï¿½Ã£ï¿½Î´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½É£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Îºï¿½ï¿½ï¿½Í¾
+ *	ALIENTEK Pandora STM32L475 IOTï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+ *	AHT10ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+ *	ï¿½ï¿½ï¿½ï¿½Ô­ï¿½ï¿½@ALIENTEK
+ *	ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì³:www.openedv.com
+ *	ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½:2018/10/27
+ *	ï¿½æ±¾ï¿½ï¿½V1.0
+ *	ï¿½ï¿½È¨ï¿½ï¿½ï¿½Ð£ï¿½ï¿½ï¿½ï¿½ï¿½Ø¾ï¿½ï¿½ï¿½
+ *	Copyright(C) ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó¿Æ¼ï¿½ï¿½ï¿½ï¿½Þ¹ï¿½Ë¾ 2014-2024
+ *	All rights reserved
+ *	******************************************************************************
+ *	ï¿½ï¿½Ê¼ï¿½æ±¾
  *	******************************************************************************/
 
 /**
- * @brief	ÏòATH10Ð´ÈëÊý¾Ý
+ * @brief	ï¿½ï¿½ATH10Ð´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
  *
- * @param   cmd		ÃüÁî
- * @param   data	ÒªÐ´ÈëµÄÊý¾Ý
- * @param   len		Ð´ÈëÊý¾Ý´óÐ¡
+ * @param   cmd		ï¿½ï¿½ï¿½ï¿½
+ * @param   data	ÒªÐ´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+ * @param   len		Ð´ï¿½ï¿½ï¿½ï¿½ï¿½Ý´ï¿½Ð¡
  *
- * @return  u8		0,Õý³£,ÆäËû,´íÎó´úÂë
+ * @return  u8		0,ï¿½ï¿½ï¿½ï¿½,ï¿½ï¿½ï¿½ï¿½,ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
  */
 u8 AHT10_Write_Data(u8 cmd, u8 *data, u8 len)
 {
     IIC_Start();
-    IIC_Send_Byte((AHT10_IIC_ADDR << 1) | 0); //·¢ËÍÆ÷¼þµØÖ·+Ð´ÃüÁî
+    IIC_Send_Byte((AHT10_IIC_ADDR << 1) | 0); //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö·+Ð´ï¿½ï¿½ï¿½ï¿½
 
-    if(IIC_Wait_Ack())          //µÈ´ýÓ¦´ð
+    if(IIC_Wait_Ack())          //ï¿½È´ï¿½Ó¦ï¿½ï¿½
     {
         IIC_Stop();
         return 1;
     }
 
-    IIC_Send_Byte(cmd);         //Ð´¼Ä´æÆ÷µØÖ·
-    IIC_Wait_Ack();             //µÈ´ýÓ¦´ð
+    IIC_Send_Byte(cmd);         //Ð´ï¿½Ä´ï¿½ï¿½ï¿½ï¿½ï¿½Ö·
+    IIC_Wait_Ack();             //ï¿½È´ï¿½Ó¦ï¿½ï¿½
 
     for(u8 i = 0; i < len; i++)
     {
-        IIC_Send_Byte(data[i]);     //·¢ËÍÊý¾Ý
-        IIC_Wait_Ack();				//µÈ´ýÓ¦´ð
+        IIC_Send_Byte(data[i]);     //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+        IIC_Wait_Ack();				//ï¿½È´ï¿½Ó¦ï¿½ï¿½
     }
 
     IIC_Stop();
@@ -41,43 +60,43 @@ u8 AHT10_Write_Data(u8 cmd, u8 *data, u8 len)
 
 
 /**
- * @brief	¶ÁÒ»¸ö×Ö½Ú
+ * @brief	ï¿½ï¿½Ò»ï¿½ï¿½ï¿½Ö½ï¿½
  *
  * @param   void
  *
- * @return  u8		¶Áµ½µÄÊý¾Ý
+ * @return  u8		ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
  */
 u8 AHT10_ReadOneByte(void)
 {
     u8 res = 0;
     IIC_Start();
-    IIC_Send_Byte((AHT10_IIC_ADDR << 1) | 0X01); //·¢ËÍÆ÷¼þµØÖ·+¶ÁÃüÁî
+    IIC_Send_Byte((AHT10_IIC_ADDR << 1) | 0X01); //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö·+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
-    if(IIC_Wait_Ack())          //µÈ´ýÓ¦´ð
+    if(IIC_Wait_Ack())          //ï¿½È´ï¿½Ó¦ï¿½ï¿½
     {
         IIC_Stop();
         return 1;
     }
 
-    res = IIC_Read_Byte(0);		//¶ÁÊý¾Ý,·¢ËÍnACK
-    IIC_Stop();                 //²úÉúÒ»¸öÍ£Ö¹Ìõ¼þ
+    res = IIC_Read_Byte(0);		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½,ï¿½ï¿½ï¿½ï¿½nACK
+    IIC_Stop();                 //ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½Í£Ö¹ï¿½ï¿½ï¿½ï¿½
     return res;
 }
 
 /**
- * @brief	¶ÁÊý¾Ý
+ * @brief	ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
  *
- * @param   data	Êý¾Ý»º´æ
- * @param   len		¶ÁÊý¾Ý´óÐ¡
+ * @param   data	ï¿½ï¿½ï¿½Ý»ï¿½ï¿½ï¿½
+ * @param   len		ï¿½ï¿½ï¿½ï¿½ï¿½Ý´ï¿½Ð¡
  *
- * @return  u8		0,Õý³£,ÆäËû,´íÎó´úÂë
+ * @return  u8		0,ï¿½ï¿½ï¿½ï¿½,ï¿½ï¿½ï¿½ï¿½,ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
  */
 u8 AHT10_Read_Data(u8 *data, u8 len)
 {
     IIC_Start();
-    IIC_Send_Byte((AHT10_IIC_ADDR << 1) | 0x01); //·¢ËÍÆ÷¼þµØÖ·+¶ÁÃüÁî
+    IIC_Send_Byte((AHT10_IIC_ADDR << 1) | 0x01); //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö·+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
-    if(IIC_Wait_Ack())          //µÈ´ýÓ¦´ð
+    if(IIC_Wait_Ack())          //ï¿½È´ï¿½Ó¦ï¿½ï¿½
     {
         IIC_Stop();
         return 1;
@@ -86,10 +105,10 @@ u8 AHT10_Read_Data(u8 *data, u8 len)
     for(u8 i = 0; i < len; i++)
     {
         if(i == (len - 1))
-            data[i] = IIC_Read_Byte(0);		//¶ÁÊý¾Ý,·¢ËÍnACK
+            data[i] = IIC_Read_Byte(0);		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½,ï¿½ï¿½ï¿½ï¿½nACK
 
         else
-            data[i] = IIC_Read_Byte(1);		//¶ÁÊý¾Ý,·¢ËÍACK
+            data[i] = IIC_Read_Byte(1);		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½,ï¿½ï¿½ï¿½ï¿½ACK
     }
 
     IIC_Stop();
@@ -97,11 +116,11 @@ u8 AHT10_Read_Data(u8 *data, u8 len)
 }
 
 /**
- * @brief	¶ÁÈ¡ÎÂ¶ÈÊý¾Ý
+ * @brief	ï¿½ï¿½È¡ï¿½Â¶ï¿½ï¿½ï¿½ï¿½ï¿½
  *
  * @param   void
  *
- * @return  float	ÎÂ¶ÈÊý¾Ý£¨µ¥Î»£ºÉãÊÏ¶È£©
+ * @return  float	ï¿½Â¶ï¿½ï¿½ï¿½ï¿½Ý£ï¿½ï¿½ï¿½Î»ï¿½ï¿½ï¿½ï¿½ï¿½Ï¶È£ï¿½
  */
 float AHT10_Read_Temperature(void)
 {
@@ -110,11 +129,11 @@ float AHT10_Read_Temperature(void)
     u8 temp[6];
     float cur_temp;
 
-    res = AHT10_Write_Data(AHT10_GET_DATA, cmd, 2); //·¢ËÍ¶ÁÈ¡Êý¾ÝÃüÁî
+    res = AHT10_Write_Data(AHT10_GET_DATA, cmd, 2); //ï¿½ï¿½ï¿½Í¶ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
     if(res)	return 1;
 
-    res = AHT10_Read_Data(temp, 6);				//¶ÁÈ¡Êý¾Ý
+    res = AHT10_Read_Data(temp, 6);				//ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½
 
     if(res)	return 1;
 
@@ -124,11 +143,11 @@ float AHT10_Read_Temperature(void)
 }
 
 /**
- * @brief	¶ÁÈ¡Êª¶ÈÊý¾Ý
+ * @brief	ï¿½ï¿½È¡Êªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
  *
  * @param   void
  *
- * @return  float	Êª¶ÈÊý¾Ý£¨µ¥Î»£º%RH£©
+ * @return  float	Êªï¿½ï¿½ï¿½ï¿½ï¿½Ý£ï¿½ï¿½ï¿½Î»ï¿½ï¿½%RHï¿½ï¿½
  */
 float AHT10_Read_Humidity(void)
 {
@@ -137,11 +156,11 @@ float AHT10_Read_Humidity(void)
     u8 humi[6];
     float cur_humi;
 
-    res = AHT10_Write_Data(AHT10_GET_DATA, cmd, 2); //·¢ËÍ¶ÁÈ¡Êý¾ÝÃüÁî
+    res = AHT10_Write_Data(AHT10_GET_DATA, cmd, 2); //ï¿½ï¿½ï¿½Í¶ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
     if(res)	return 1;
 
-    res = AHT10_Read_Data(humi, 6);				//¶ÁÈ¡Êý¾Ý
+    res = AHT10_Read_Data(humi, 6);				//ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½
 
     if(res)	return 1;
 
@@ -151,18 +170,18 @@ float AHT10_Read_Humidity(void)
 }
 
 /**
- * @brief	ATH10´«¸ÐÆ÷³õÊ¼»¯
+ * @brief	ATH10ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¼ï¿½ï¿½
  *
  * @param   void
  *
- * @return  u8		0,³õÊ¼»¯³É¹¦£¬ÆäËû,Ê§°Ü
+ * @return  u8		0,ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½É¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½,Ê§ï¿½ï¿½
  */
 u8 AHT10_Init(void)
 {
     u8 res;
     u8 temp[2] = {0, 0};
 
-    IIC_Init();		//³õÊ¼»¯IIC½Ó¿Ú£º×¢ÒâÕâÀïµÄIIC×ÜÏßÎª£ºSCL-PD6 SDA-PC1
+    IIC_Init();		//ï¿½ï¿½Ê¼ï¿½ï¿½IICï¿½Ó¿Ú£ï¿½×¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½IICï¿½ï¿½ï¿½ï¿½Îªï¿½ï¿½SCL-PD6 SDA-PC1
 
     res = AHT10_Write_Data(AHT10_NORMAL_CMD, temp, 2);
 

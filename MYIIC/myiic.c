@@ -1,9 +1,30 @@
 #include "myiic.h"
 #include "delay.h"
+/*********************************************************************************
+			  ___   _     _____  _____  _   _  _____  _____  _   __
+			 / _ \ | |   |_   _||  ___|| \ | ||_   _||  ___|| | / /
+			/ /_\ \| |     | |  | |__  |  \| |  | |  | |__  | |/ /
+			|  _  || |     | |  |  __| | . ` |  | |  |  __| |    \
+			| | | || |_____| |_ | |___ | |\  |  | |  | |___ | |\  \
+			\_| |_/\_____/\___/ \____/ \_| \_/  \_/  \____/ \_| \_/
 
+ *	******************************************************************************
+ *	ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö»ï¿½ï¿½Ñ§Ï°Ê¹ï¿½Ã£ï¿½Î´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½É£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Îºï¿½ï¿½ï¿½Í¾
+ *	ALIENTEK Pandora STM32L475 IOTï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+ *	AHT10ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+ *	ï¿½ï¿½ï¿½ï¿½Ô­ï¿½ï¿½@ALIENTEK
+ *	ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì³:www.openedv.com
+ *	ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½:2018/10/27
+ *	ï¿½æ±¾ï¿½ï¿½V1.0
+ *	ï¿½ï¿½È¨ï¿½ï¿½ï¿½Ð£ï¿½ï¿½ï¿½ï¿½ï¿½Ø¾ï¿½ï¿½ï¿½
+ *	Copyright(C) ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó¿Æ¼ï¿½ï¿½ï¿½ï¿½Þ¹ï¿½Ë¾ 2014-2024
+ *	All rights reserved
+ *	******************************************************************************
+ *	ï¿½ï¿½Ê¼ï¿½æ±¾
+ *	******************************************************************************/
 
 /**
- * @brief	IICµ×²ãÑÓÊ±º¯Êý
+ * @brief	IICï¿½×²ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½
  *
  * @param   void
  *
@@ -15,7 +36,7 @@ void IIC_Delay(void)
 }
 
 /**
- * @brief	IIC³õÊ¼»¯º¯Êý
+ * @brief	IICï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
  *
  * @param   void
  *
@@ -25,23 +46,23 @@ void IIC_Init(void)
 {
     GPIO_InitTypeDef GPIO_Initure;
 
-    __HAL_RCC_GPIOC_CLK_ENABLE();   //Ê¹ÄÜGPIOCÊ±ÖÓ
-	__HAL_RCC_GPIOD_CLK_ENABLE();   //Ê¹ÄÜGPIODÊ±ÖÓ
+    __HAL_RCC_GPIOC_CLK_ENABLE();   //Ê¹ï¿½ï¿½GPIOCÊ±ï¿½ï¿½
+	__HAL_RCC_GPIOD_CLK_ENABLE();   //Ê¹ï¿½ï¿½GPIODÊ±ï¿½ï¿½
 
     /*
 		SCL - PD6		SDA-PC1
 	*/
     GPIO_Initure.Pin 	= GPIO_PIN_1;
-    GPIO_Initure.Mode 	= GPIO_MODE_OUTPUT_PP;	//ÍÆÍìÊä³ö
-    GPIO_Initure.Pull 	= GPIO_PULLUP;        	//ÉÏÀ­
-    GPIO_Initure.Speed 	= GPIO_SPEED_FAST;   	//¿ìËÙ
+    GPIO_Initure.Mode 	= GPIO_MODE_OUTPUT_PP;	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+    GPIO_Initure.Pull 	= GPIO_PULLUP;        	//ï¿½ï¿½ï¿½ï¿½
+    GPIO_Initure.Speed 	= GPIO_SPEED_FAST;   	//ï¿½ï¿½ï¿½ï¿½
     HAL_GPIO_Init(GPIOC, &GPIO_Initure);
 	
 	
 	GPIO_Initure.Pin = GPIO_PIN_6;
-    GPIO_Initure.Mode = GPIO_MODE_OUTPUT_PP; 	//ÍÆÍìÊä³ö
-    GPIO_Initure.Pull = GPIO_PULLUP;        	//ÉÏÀ­
-    GPIO_Initure.Speed = GPIO_SPEED_FAST;   	//¿ìËÙ
+    GPIO_Initure.Mode = GPIO_MODE_OUTPUT_PP; 	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+    GPIO_Initure.Pull = GPIO_PULLUP;        	//ï¿½ï¿½ï¿½ï¿½
+    GPIO_Initure.Speed = GPIO_SPEED_FAST;   	//ï¿½ï¿½ï¿½ï¿½
     HAL_GPIO_Init(GPIOD, &GPIO_Initure);
 
     IIC_SDA(1);
@@ -49,7 +70,7 @@ void IIC_Init(void)
 }
 
 /**
- * @brief	²úÉúIICÆðÊ¼ÐÅºÅ
+ * @brief	ï¿½ï¿½ï¿½ï¿½IICï¿½ï¿½Ê¼ï¿½Åºï¿½
  *
  * @param   void
  *
@@ -57,16 +78,16 @@ void IIC_Init(void)
  */
 void IIC_Start(void)
 {
-    SDA_OUT();     //sdaÏßÊä³ö
+    SDA_OUT();     //sdaï¿½ï¿½ï¿½ï¿½ï¿½
     IIC_SDA(1);
     IIC_SCL(1);
     IIC_Delay();
     IIC_SDA(0);//START:when CLK is high,DATA change form high to low
 	 IIC_Delay();
-    IIC_SCL(0);//Ç¯×¡I2C×ÜÏß£¬×¼±¸·¢ËÍ»ò½ÓÊÕÊý¾Ý
+    IIC_SCL(0);//Ç¯×¡I2Cï¿½ï¿½ï¿½ß£ï¿½×¼ï¿½ï¿½ï¿½ï¿½ï¿½Í»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 }
 /**
- * @brief	²úÉúIICÍ£Ö¹ÐÅºÅ
+ * @brief	ï¿½ï¿½ï¿½ï¿½IICÍ£Ö¹ï¿½Åºï¿½
  *
  * @param   void
  *
@@ -74,27 +95,27 @@ void IIC_Start(void)
  */
 void IIC_Stop(void)
 {
-    SDA_OUT();//sdaÏßÊä³ö
+    SDA_OUT();//sdaï¿½ï¿½ï¿½ï¿½ï¿½
 	IIC_SDA(0);
     IIC_SCL(1);
      IIC_Delay();
 	IIC_SDA(1);//STOP:when CLK is high DATA change form low to high
 	 IIC_Delay();
-	IIC_SCL(0);//·¢ËÍI2C×ÜÏß½áÊøÐÅºÅ
+	IIC_SCL(0);//ï¿½ï¿½ï¿½ï¿½I2Cï¿½ï¿½ï¿½ß½ï¿½ï¿½ï¿½ï¿½Åºï¿½
 }
 
 /**
- * @brief	µÈ´ýÓ¦´ðÐÅºÅµ½À´
+ * @brief	ï¿½È´ï¿½Ó¦ï¿½ï¿½ï¿½ÅºÅµï¿½ï¿½ï¿½
  *
  * @param   void
  *
- * @return  u8		1£¬½ÓÊÕÓ¦´ðÊ§°Ü
- *					0£¬½ÓÊÕÓ¦´ð³É¹¦
+ * @return  u8		1ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó¦ï¿½ï¿½Ê§ï¿½ï¿½
+ *					0ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó¦ï¿½ï¿½É¹ï¿½
  */
 u8 IIC_Wait_Ack(void)
 {
     u16 ucErrTime = 0;
-    SDA_IN();      //SDAÉèÖÃÎªÊäÈë
+    SDA_IN();      //SDAï¿½ï¿½ï¿½ï¿½Îªï¿½ï¿½ï¿½ï¿½
     IIC_SDA(1);
      IIC_Delay();
     IIC_SCL(1);
@@ -111,11 +132,11 @@ u8 IIC_Wait_Ack(void)
         }
     }
 
-    IIC_SCL(0);//Ê±ÖÓÊä³ö0
+    IIC_SCL(0);//Ê±ï¿½ï¿½ï¿½ï¿½ï¿½0
     return 0;
 }
 /**
- * @brief	²úÉúACKÓ¦´ð
+ * @brief	ï¿½ï¿½ï¿½ï¿½ACKÓ¦ï¿½ï¿½
  *
  * @param   void
  *
@@ -132,7 +153,7 @@ void IIC_Ack(void)
     IIC_SCL(0);
 }
 /**
- * @brief	²»²úÉúACKÓ¦´ð
+ * @brief	ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ACKÓ¦ï¿½ï¿½
  *
  * @param   void
  *
@@ -149,9 +170,9 @@ void IIC_NAck(void)
     IIC_SCL(0);
 }
 /**
- * @brief	IIC·¢ËÍÒ»¸ö×Ö½Ú
+ * @brief	IICï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½Ö½ï¿½
  *
- * @param   txd		ÐèÒª·¢ËÍµÄÊý¾Ý
+ * @param   txd		ï¿½ï¿½Òªï¿½ï¿½ï¿½Íµï¿½ï¿½ï¿½ï¿½ï¿½
  *
  * @return  void
  */
@@ -159,7 +180,7 @@ void IIC_Send_Byte(u8 txd)
 {
     u8 t;
     SDA_OUT();
-    IIC_SCL(0);//À­µÍÊ±ÖÓ¿ªÊ¼Êý¾Ý´«Êä
+    IIC_SCL(0);//ï¿½ï¿½ï¿½ï¿½Ê±ï¿½Ó¿ï¿½Ê¼ï¿½ï¿½ï¿½Ý´ï¿½ï¿½ï¿½
 
     for(t = 0; t < 8; t++)
     {
@@ -172,16 +193,16 @@ void IIC_Send_Byte(u8 txd)
     }
 }
 /**
- * @brief	¶Á1¸ö×Ö½ÚÊý¾Ý
+ * @brief	ï¿½ï¿½1ï¿½ï¿½ï¿½Ö½ï¿½ï¿½ï¿½ï¿½ï¿½
  *
- * @param   ack		1£¬·¢ËÍACK		0£¬·¢ËÍnACK
+ * @param   ack		1ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ACK		0ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½nACK
  *
- * @return  u8		·µ»Ø¶ÁÈ¡Êý¾Ý
+ * @return  u8		ï¿½ï¿½ï¿½Ø¶ï¿½È¡ï¿½ï¿½ï¿½ï¿½
  */
 u8 IIC_Read_Byte(unsigned char ack)
 {
     unsigned char i, receive = 0;
-    SDA_IN();//SDAÉèÖÃÎªÊäÈë
+    SDA_IN();//SDAï¿½ï¿½ï¿½ï¿½Îªï¿½ï¿½ï¿½ï¿½
 
     for(i = 0; i < 8; i++)
     {
@@ -194,9 +215,9 @@ u8 IIC_Read_Byte(unsigned char ack)
     }
 
     if(!ack)
-        IIC_NAck();//·¢ËÍnACK
+        IIC_NAck();//ï¿½ï¿½ï¿½ï¿½nACK
     else
-        IIC_Ack(); //·¢ËÍACK
+        IIC_Ack(); //ï¿½ï¿½ï¿½ï¿½ACK
 
     return receive;
 }
