@@ -1,0 +1,1 @@
+D:\clion_stm32\gcc-arm-none-eabi-10.3-2021.10\bin\arm-none-eabi-g++.exe  -g  -Wl,-gc-sections,--print-memory-usage,-Map=D:/clion_stm32/project_file/lv_imp/cmake-build-debug/lv_imp.map -mcpu=cortex-m4 -mthumb -mthumb-interwork -T D:/clion_stm32/project_file/lv_imp/STM32L475VETx_FLASH.ld @CMakeFiles\lv_imp.elf.dir\objects1.rsp  -o lv_imp.elf 
